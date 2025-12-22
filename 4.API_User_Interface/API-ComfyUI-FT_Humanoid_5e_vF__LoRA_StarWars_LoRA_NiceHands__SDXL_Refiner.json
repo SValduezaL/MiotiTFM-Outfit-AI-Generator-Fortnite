@@ -1,0 +1,216 @@
+{
+  "5": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "Imagen Latente Vacía"
+    }
+  },
+  "6": {
+    "inputs": {
+      "text": "fortnite_star_wars_character, nice_hands, \na brown Imperial stormtrooper firing a blaster pistol\nfortnite style, clean empty background, show only one character, perfect anatomy, anatomically correct hands with five distinct fingers on each hand, realistic skin texture, natural joint structure, \nbest quality, ultra high resolution, ultra-detailed, crisp details, stylized game art, natural lighting",
+      "clip": [
+        "52",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Codificar Texto CLIP (Prompt)"
+    }
+  },
+  "7": {
+    "inputs": {
+      "text": "(worst quality:1.4, low quality:1.4), (bad anatomy:1.2, malformed hands:1.2, fused fingers:1.2, extra fingers:1.2), (bad proportions:1.1, gross proportions, double torso, long neck), (deformed, disfigured, malformed limbs, extra limbs), multiple characters, blurry, out of frame, cropped, watermark, signature, text, jpeg artifacts, nsfw, clone, duplicate, poorly drawn face, asymmetrical eyes, unrealistic eyes, bad shadow, bad lighting, oversaturated, underexposed, lowres, draft, sketch, monochrome, grayscale",
+      "clip": [
+        "52",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Codificar Texto CLIP (Prompt)"
+    }
+  },
+  "10": {
+    "inputs": {
+      "add_noise": "enable",
+      "noise_seed": 579611483601013,
+      "steps": 32,
+      "cfg": 7,
+      "sampler_name": "dpmpp_2m",
+      "scheduler": "normal",
+      "start_at_step": 0,
+      "end_at_step": 30,
+      "return_with_leftover_noise": "enable",
+      "model": [
+        "52",
+        0
+      ],
+      "positive": [
+        "6",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "latent_image": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "KSamplerAdvanced",
+    "_meta": {
+      "title": "KSampler (Advanced) - BASE"
+    }
+  },
+  "11": {
+    "inputs": {
+      "add_noise": "disable",
+      "noise_seed": 0,
+      "steps": 32,
+      "cfg": 7,
+      "sampler_name": "dpmpp_2m",
+      "scheduler": "normal",
+      "start_at_step": 30,
+      "end_at_step": 10000,
+      "return_with_leftover_noise": "disable",
+      "model": [
+        "12",
+        0
+      ],
+      "positive": [
+        "15",
+        0
+      ],
+      "negative": [
+        "16",
+        0
+      ],
+      "latent_image": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "KSamplerAdvanced",
+    "_meta": {
+      "title": "KSampler (Advanced) - REFINER"
+    }
+  },
+  "12": {
+    "inputs": {
+      "ckpt_name": "sd_xl_refiner_1.0.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint - REFINER"
+    }
+  },
+  "15": {
+    "inputs": {
+      "text": "fortnite_star_wars_character, nice_hands, \na brown Imperial stormtrooper firing a blaster pistol\nfortnite style, clean empty background, show only one character, perfect anatomy, anatomically correct hands with five distinct fingers on each hand, realistic skin texture, natural joint structure, \nbest quality, ultra high resolution, ultra-detailed, crisp details, stylized game art, natural lighting",
+      "clip": [
+        "12",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Codificar Texto CLIP (Prompt)"
+    }
+  },
+  "16": {
+    "inputs": {
+      "text": "(worst quality:1.4, low quality:1.4), (bad anatomy:1.2, malformed hands:1.2, fused fingers:1.2, extra fingers:1.2), (bad proportions:1.1, gross proportions, double torso, long neck), (deformed, disfigured, malformed limbs, extra limbs), multiple characters, blurry, out of frame, cropped, watermark, signature, text, jpeg artifacts, nsfw, clone, duplicate, poorly drawn face, asymmetrical eyes, unrealistic eyes, bad shadow, bad lighting, oversaturated, underexposed, lowres, draft, sketch, monochrome, grayscale",
+      "clip": [
+        "12",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Codificar Texto CLIP (Prompt)"
+    }
+  },
+  "17": {
+    "inputs": {
+      "samples": [
+        "11",
+        0
+      ],
+      "vae": [
+        "12",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "Decodificación VAE"
+    }
+  },
+  "19": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Guardar Imagen"
+    }
+  },
+  "50": {
+    "inputs": {
+      "model_path": "v1x0_fortnite_humanoid_sdxl1_vae_fix-000005"
+    },
+    "class_type": "DiffusersLoader",
+    "_meta": {
+      "title": "Cargador de Difusores"
+    }
+  },
+  "51": {
+    "inputs": {
+      "lora_name": "FT_Humanoid_5e_vF_LoRA_StarWars_v1-000013.safetensors",
+      "strength_model": 0.8500000000000002,
+      "strength_clip": 1,
+      "model": [
+        "50",
+        0
+      ],
+      "clip": [
+        "50",
+        1
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "Cargar LoRA"
+    }
+  },
+  "52": {
+    "inputs": {
+      "lora_name": "nice_hands.safetensors",
+      "strength_model": 0.4000000000000001,
+      "strength_clip": 1.0000000000000002,
+      "model": [
+        "51",
+        0
+      ],
+      "clip": [
+        "51",
+        1
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "Cargar LoRA"
+    }
+  }
+}

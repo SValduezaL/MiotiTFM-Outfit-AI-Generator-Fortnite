@@ -1,0 +1,93 @@
+# Archivos de entorno
+.env
+.env.local
+.env.*.local
+
+# Entornos virtuales
+.venv_tfm_skin_ai/
+venv/
+env/
+ENV/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Modelos base grandes (deben descargarse manualmente)
+# Ver MODELS_DOWNLOAD.md para instrucciones
+3.LoRAs/3.Modelos Base seleccionados/sd_xl_base_1.0.safetensors
+3.LoRAs/3.Modelos Base seleccionados/sd_xl_refiner_1.0.safetensors
+3.LoRAs/3.Modelos Base seleccionados/gufengAnimeXL_v10.safetensors
+3.LoRAs/3.Modelos Base seleccionados/v1x0_fortnite_humanoid_sdxl1_vae_fix-000005/
+
+# Datasets completos de imágenes (demasiado grandes para GitHub)
+1.Data_preparation/outfits_originales_1024_rgba/
+1.Data_preparation/outfits_procesados_1024_rgb/
+
+# Checkpoints y archivos temporales de entrenamiento
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.safetensors.index.json
+
+# Archivos de entrenamiento grandes (mantener solo configuraciones)
+3.LoRAs/2.Entrenamientos/**/*.bin
+3.LoRAs/2.Entrenamientos/**/*.safetensors.index.json
+3.LoRAs/2.Entrenamientos/**/*.csv
+3.LoRAs/2.Entrenamientos/**/*.log
+# Excluir carpetas con nombres muy largos (problemas en Windows)
+3.LoRAs/2.Entrenamientos/FT_Humanoid_5e_vF_LoRA_Animal_v1*/
+
+# Logs y archivos temporales
+*.log
+*.tmp
+*.temp
+logs/
+wandb/
+
+# Archivos de imagen grandes (excluir datasets completos, pero permitir ejemplos)
+# Las imágenes de ejemplo se incluirán manualmente con Git LFS
+1.Data_preparation/outfits_originales_1024_rgba/**/*.png
+1.Data_preparation/outfits_procesados_1024_rgb/**/*.png
+3.LoRAs/1.Datasets LoRAs/**/*.png
+3.LoRAs/1.Datasets LoRAs/**/*.jpg
+3.LoRAs/1.Datasets LoRAs/**/*.jpeg
+
+# Permitir imágenes de ejemplo y resultados (se gestionarán con Git LFS)
+# Las imágenes en 4.API_User_Interface/WebUI/ y ejemplos seleccionados se incluirán
+

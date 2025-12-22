@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visor de Traza de Generación</title>
+    <style>
+        :root {
+            --bg-color: #f5f5f7;
+            --surface-color: #ffffff;
+            --primary-text-color: #1d1d1f;
+            --secondary-text-color: #515154;
+            --border-color: #e8e8e8;
+            --accent-gradient: linear-gradient(135deg, #FFD60A, #FFB000);
+            --error-color: #FF3B30;
+            --success-color: #34C759;
+            --processing-color: #007AFF;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-text-color);
+            margin: 0;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .header {
+            background: var(--accent-gradient);
+            color: var(--primary-text-color);
+            padding: 25px 20px;
+            text-align: center;
+            border-radius: 25px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(255, 181, 0, 0.2);
+        }
+
+        .header h1 {
+            font-size: clamp(22px, 5vw, 28px);
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .task-id-header {
+            text-align: center;
+            font-family: 'Fira Code', monospace;
+            color: var(--secondary-text-color);
+            font-size: 0.9em;
+            margin-bottom: 2rem;
+            margin-top: -1rem;
+            user-select: all;
+        }
+
+        .status-bar {
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            border: 1px solid transparent;
+        }
+        .status-processing { background-color: rgba(0, 122, 255, 0.1); border-color: rgba(0, 122, 255, 0.3); color: var(--processing-color); }
+        .status-completed { background-color: rgba(52, 199, 89, 0.1); border-color: rgba(52, 199, 89, 0.3); color: var(--success-color); }
+        .status-failed { background-color: rgba(255, 59, 48, 0.1); border-color: rgba(255, 59, 48, 0.3); color: var(--error-color); }
+        .status-pending { background-color: #f8f8f8; border-color: #e8e8e8; color: var(--secondary-text-color); }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .trace-section {
+            background-color: var(--surface-color);
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .trace-section h3 {
+            margin-top: 0;
+            color: var(--primary-text-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-bottom: 2px solid #FFD60A;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        pre, code {
+            background-color: #f8f8f8;
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid #e8e8e8;
+            white-space: pre-wrap;
+            word-break: break-word;
+            color: var(--secondary-text-color);
+            font-family: "Fira Code", monospace;
+            font-size: 0.9em;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .param-list, .file-details-list { list-style: none; padding: 0; }
+        .param-list li, .file-details-list li { display: flex; flex-direction: column; padding: 0.4rem 0; border-bottom: 1px solid #f0f0f0; }
+        .param-list li:last-child, .file-details-list li:last-child { border-bottom: none; }
+        .param-list li span:first-child, .file-details-list li span:first-child { font-weight: 600; color: var(--primary-text-color); }
+        .param-list li span:last-child, .file-details-list li span:last-child { color: var(--secondary-text-color); word-break: break-all; }
+
+        #imageSection { display: none; }
+        #generatedImage { max-width: 100%; height: auto; border-radius: 12px; margin-top: 1rem; border: 1px solid var(--border-color); box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+
+        #progressTimeline { margin-top: 1rem; max-height: 400px; overflow-y: auto; }
+        .timeline-item { display: flex; align-items: center; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid #f0f0f0; }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-time { background: #FFD60A; color: #1d1d1f; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8em; font-weight: 600; }
+
+        #errorContainer { display: none; }
+        strong { color: var(--primary-text-color); font-weight: 600; }
+        
+        @media (max-width: 900px) {
+            body { padding: 1rem; }
+            .main-layout { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Visor de Traza de Generación</h1>
+        </div>
+        <p class="task-id-header">ID: <span id="taskId"></span></p>
+
+        <div id="status-bar" class="status-bar">Cargando estado...</div>
+        <div id="errorContainer"></div>
+
+        <div class="main-layout" id="mainContent" style="display: none;">
+            
+            <div class="trace-details">
+                <div class="trace-section"><h3>1. Prompt Original</h3><p id="originalPrompt"></p></div>
+                <div class="trace-section"><h3>2. Clasificación y Traducción (IA)</h3><p><strong>Categoría Detectada:</strong> <span id="detectedCategory"></span></p><p><strong>Workflow:</strong> <code id="workflowFile"></code></p><p><strong>Prompt Traducido:</strong> <span id="translatedPrompt"></span></p></div>
+                <div class="trace-section"><h3>3. Prompts Finales para Generación</h3><p><strong>Prompt Positivo Final:</strong></p><pre id="finalPrompt"></pre><p><strong>Prompt Negativo:</strong></p><pre id="negativePrompt"></pre></div>
+                <div class="trace-section"><h3>4. Parámetros de Generación</h3><ul id="generationParams" class="param-list"></ul></div>
+                <div class="trace-section"><h3>5. Tiempos de Ejecución</h3><ul class="param-list"><li><span>Tiempo total de generación:</span><span id="totalTime">Calculando...</span></li></ul></div>
+                <div class="trace-section" id="outputDetailsSection" style="display: none;">
+                    <h3>6. Detalles del Archivo</h3>
+                    <ul class="file-details-list">
+                        <li><span>Nombre del Archivo:</span><span id="outputFilename"></span></li>
+                        <li><span>URL de la Imagen:</span><span id="outputImageUrl"></span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="generation-output">
+                <div id="imageSection" class="trace-section">
+                    <h3>Resultado</h3>
+                    <img id="generatedImage" alt="Imagen generada">
+                </div>
+                
+                <div class="trace-section">
+                    <h3>Timeline de Progreso</h3>
+                    <div id="progressTimeline"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const taskIdSpan = document.getElementById('taskId');
+    const taskId = window.location.pathname.split('/').pop(); 
+    if(taskIdSpan) taskIdSpan.textContent = taskId;
+
+    let pollingInterval;
+
+    fetchData();
+    pollingInterval = setInterval(fetchData, 3000);
+
+    async function fetchData() {
+        try {
+            const response = await fetch(`/api/trace/${taskId}`);
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.detail || `Error ${response.status}`);
+            }
+            const data = await response.json();
+            updateUI(data);
+            if (data.status === 'completed' || data.status === 'failed') {
+                clearInterval(pollingInterval);
+            }
+        } catch (error) {
+            showError(error.message);
+            clearInterval(pollingInterval);
+        }
+    }
+
+    function updateUI(data) {
+        document.getElementById('mainContent').style.display = 'grid';
+        document.getElementById('errorContainer').style.display = 'none';
+
+        const trace = data.trace || {};
+        const params = trace.generation_params || {};
+        const timestamps = trace.timestamps || {};
+        const outputDetails = trace.output_details || {};
+        
+        const statusBar = document.getElementById('status-bar');
+        statusBar.textContent = `Estado: ${data.status.toUpperCase()}`;
+        statusBar.className = `status-bar status-${data.status}`;
+
+        document.getElementById('originalPrompt').textContent = trace.original_prompt || 'N/A';
+        document.getElementById('translatedPrompt').textContent = trace.translated_prompt || 'N/A';
+        document.getElementById('detectedCategory').textContent = trace.detected_category || 'N/A';
+        document.getElementById('workflowFile').textContent = trace.workflow_file || 'N/A';
+        document.getElementById('finalPrompt').textContent = trace.final_prompt || 'N/A';
+        document.getElementById('negativePrompt').textContent = trace.negative_prompt || 'N/A';
+        document.getElementById('generationParams').innerHTML = `
+            <li><span>Seed</span> <span>${params.seed !== null ? params.seed : 'Aleatorio'}</span></li>
+            <li><span>Steps</span> <span>${params.steps || 'N/A'}</span></li>
+            <li><span>CFG Scale</span> <span>${params.cfg || 'N/A'}</span></li>
+            <li><span>Dimensiones</span> <span>${params.width || 'N/A'}x${params.height || 'N/A'}</span></li>
+        `;
+        if (timestamps.created && timestamps.comfy_completed) {
+            document.getElementById('totalTime').textContent = `${(timestamps.comfy_completed - timestamps.created).toFixed(2)} segundos`;
+        }
+
+        if (data.status === 'completed') {
+            const imageSection = document.getElementById('imageSection');
+            const generatedImage = document.getElementById('generatedImage');
+
+            if (imageSection && generatedImage) {
+                imageSection.style.display = 'block';
+                generatedImage.src = `/image/${taskId}`;
+            }
+            
+            const outputDetailsSection = document.getElementById('outputDetailsSection');
+            if (outputDetails && outputDetails.filename && outputDetails.image_url) {
+                outputDetailsSection.style.display = 'block';
+                document.getElementById('outputFilename').textContent = outputDetails.filename;
+                document.getElementById('outputImageUrl').textContent = window.location.origin + outputDetails.image_url;
+            }
+        }
+
+        const timeline = document.getElementById('progressTimeline');
+        timeline.innerHTML = '';
+        const progressHistory = data.progress_history || [];
+        if (progressHistory.length > 0) {
+            const startTime = timestamps.created || progressHistory[0].timestamp;
+            progressHistory.forEach(item => {
+                const relativeTime = (item.timestamp - startTime).toFixed(1);
+                timeline.innerHTML += `<div class="timeline-item"><span class="timeline-time">+${relativeTime}s</span><span class="timeline-message">${item.progress}% - ${item.message}</span></div>`;
+            });
+        } else {
+            timeline.innerHTML = '<p>No hay historial de progreso detallado disponible.</p>';
+        }
+    }
+
+    function showError(message) {
+        document.getElementById('mainContent').style.display = 'none';
+        const errorContainer = document.getElementById('errorContainer');
+        errorContainer.className = 'status-bar status-failed';
+        errorContainer.style.display = 'block';
+        errorContainer.textContent = `Error al cargar la tarea: ${message}`;
+    }
+});
+</script>
+
+</body>
+</html>
