@@ -12,6 +12,11 @@
 "3.LoRAs/4.Inferencias LoRAs seleccionados/*.png" filter=lfs diff=lfs merge=lfs -text
 "3.LoRAs/4.Inferencias LoRAs seleccionados/*.jpg" filter=lfs diff=lfs merge=lfs -text
 
+# Imágenes de datasets LoRAs (para mostrar con qué imágenes se ha trabajado)
+"3.LoRAs/1.Datasets LoRAs/**/*.png" filter=lfs diff=lfs merge=lfs -text
+"3.LoRAs/1.Datasets LoRAs/**/*.jpg" filter=lfs diff=lfs merge=lfs -text
+"3.LoRAs/1.Datasets LoRAs/**/*.jpeg" filter=lfs diff=lfs merge=lfs -text
+
 # Archivos de configuración JSON de ComfyUI (pequeños, no necesitan LFS)
 *.json text eol=lf
 

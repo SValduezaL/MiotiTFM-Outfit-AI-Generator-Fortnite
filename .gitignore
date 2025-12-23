@@ -80,16 +80,13 @@ desktop.ini
 logs/
 wandb/
 
-# Archivos de imagen grandes (excluir datasets completos, pero permitir ejemplos)
-# Las imágenes de ejemplo se incluirán manualmente con Git LFS
+# Archivos de imagen grandes (excluir datasets completos de preparación, pero permitir ejemplos y datasets LoRAs)
+# Las imágenes de ejemplo y datasets LoRAs se incluirán con Git LFS
 1.Data_preparation/outfits_originales_1024_rgba/**/*.png
 1.Data_preparation/outfits_procesados_1024_rgb/**/*.png
-3.LoRAs/1.Datasets LoRAs/**/*.png
-3.LoRAs/1.Datasets LoRAs/**/*.jpg
-3.LoRAs/1.Datasets LoRAs/**/*.jpeg
 
-# Permitir imágenes de ejemplo y resultados (se gestionarán con Git LFS)
-# Las imágenes en 4.API_User_Interface/WebUI/ y ejemplos seleccionados se incluirán
+# Permitir imágenes de ejemplo, resultados y datasets LoRAs (se gestionarán con Git LFS)
+# Las imágenes en 4.API_User_Interface/WebUI/, ejemplos seleccionados y datasets LoRAs se incluirán
 
 # Documentación de configuración local
 GITHUB_SETUP.md
