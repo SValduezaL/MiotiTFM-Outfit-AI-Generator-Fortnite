@@ -7,6 +7,9 @@ Este proyecto ha sido galardonado por **MIOTI TECH & BUSINESS SCHOOL** como:
 -   🥇 **Mejor TFM del Máster Deep Learning** - Promoción 2025
 -   🏆 **Mejor Proyecto Académico de toda la Escuela** - Año académico 2024-2025
 
+-   📄 [Ver presentación (PDF)](0.Presentacion/TFM_Generacion_Personajes_Fortnite_vF.pdf)
+-   📊 [Descargar PPTX](0.Presentacion/TFM_Generacion_Personajes_Fortnite_vF.pptx)
+
 ---
 
 Proyecto de Fin de Máster (TFM) para la generación de outfits/skins de Fortnite mediante Inteligencia Artificial, utilizando una arquitectura híbrida de fine-tuning y LoRAs especializados.
