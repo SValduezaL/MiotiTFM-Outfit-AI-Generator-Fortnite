@@ -53,7 +53,7 @@ desktop.ini
 1.Data_preparation/outfits_procesados_1024_rgb/
 
 # Excluir carpetas con nombres muy largos (problemas en Windows)
-3.LoRAs/2.Entrenamientos/FT_Humanoid_5e_vF_LoRA_Animal_v1*/
+# 3.LoRAs/2.Entrenamientos/FT_Humanoid_5e_vF_LoRA_Animal_v1*/
 
 # Modelos base grandes (deben descargarse manualmente)
 # Ver MODELS_DOWNLOAD.md para instrucciones
