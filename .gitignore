@@ -91,3 +91,5 @@ wandb/
 # Permitir imágenes de ejemplo y resultados (se gestionarán con Git LFS)
 # Las imágenes en 4.API_User_Interface/WebUI/ y ejemplos seleccionados se incluirán
 
+# Documentación de configuración local
+GITHUB_SETUP.md

@@ -270,14 +270,17 @@ Todos los LoRAs están incluidos en el repositorio mediante Git LFS.
 
 ## 📝 Licencia
 
-Este proyecto es parte de un Trabajo de Fin de Máster (TFM). Consulta la licencia en el repositorio.
+Este proyecto es parte de un Trabajo de Fin de Máster (TFM) para el Máster de Deep Learning en MIOTI Tech & Business School. Consulta la licencia en el repositorio.
 
-## 👤 Autor
+## 👤 Autores
 
-Proyecto desarrollado como Trabajo de Fin de Máster (TFM).
+-   Odreman Ferrer Diaz
+-   Sergio Valdueza Lozano
 
 ## 🙏 Agradecimientos
 
+-   **MOITI TECH & BUSINESS SCHOOL**.
+-   **Diego García Morate**, Tutor del Proyecto (diegogm@faculty.miot.es)
 -   **Stability AI** por Stable Diffusion XL
 -   **KOHYA_ss** por el framework de entrenamiento
 -   **ComfyUI** por la interfaz de generación
