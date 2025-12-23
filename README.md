@@ -344,7 +344,7 @@ Consulta la licencia en el repositorio.
 ## 🙏 Agradecimientos
 
 -   **MOITI TECH & BUSINESS SCHOOL**.
--   **Diego García Morate**, Tutor del Proyecto (diegogm@faculty.miot.es)
+-   **Diego García Morate**, Tutor del Proyecto (diegogm@faculty.mioti.es)
 -   **Stability AI** por Stable Diffusion XL
 -   **KOHYA_ss** por el framework de entrenamiento
 -   **ComfyUI** por la interfaz de generación
