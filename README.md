@@ -1,5 +1,14 @@
 # TFM Outfit AI Generator Fortnite
 
+## 🏆 Reconocimientos
+
+Este proyecto ha sido galardonado por **MIOTI TECH & BUSINESS SCHOOL** como:
+
+-   🥇 **Mejor TFM del Máster Deep Learning** - Promoción 2025
+-   🏆 **Mejor Proyecto Académico de toda la Escuela** - Año académico 2024-2025
+
+---
+
 Proyecto de Fin de Máster (TFM) para la generación de outfits/skins de Fortnite mediante Inteligencia Artificial, utilizando una arquitectura híbrida de fine-tuning y LoRAs especializados.
 
 ## 📋 Descripción del Proyecto
@@ -52,7 +61,11 @@ Generar imágenes de outfits de Fortnite manteniendo la identidad visual caracte
 
 ```
 TFM_Outfit_AI_Generator_Fortnite/
-├── 1.Data_preparation/          # Pipeline de preparación de datos
+├── 0.Presentacion/              # Presentación del proyecto
+│   ├── TFM_Generacion_Personajes_Fortnite_vF.pdf
+│   └── TFM_Generacion_Personajes_Fortnite_vF.pptx
+│
+├── 1.Data_prep/          # Pipeline de preparación de datos
 │   ├── 0.1.get_items_from_api.ipynb
 │   ├── 0.2.1.data_cleaning.ipynb
 │   ├── 0.2.2.1.data_augmentation.ipynb
@@ -61,16 +74,24 @@ TFM_Outfit_AI_Generator_Fortnite/
 │   ├── 0.2.5.mejorar-etiquetas.ipynb
 │   └── README.md
 │
-├── 2.Finetuning_Humanoids/      # Fine-tuning del modelo base
+├── 2.Finetuning_Humanoids/      # Fine-tunings del modelo base
+|   ├── humanoid_02              # Segundo entrenamiento realizado
+|   ├── humanoid_03              # Tercer entrenamiento realizado
+|   ├── humanoid_04              # Cuarto entrenamiento realizado
+|   ├── humanoid_05              # Quinto entrenamiento realizado (seleccionado)
+|   ├── humanoid_06              # Sexto entrenamiento realizado
+|   ├── humanoid_07              # Séptimo entrenamiento realizado
+│   └── README.md
 │
 ├── 3.LoRAs/                     # Entrenamiento de LoRAs
 │   ├── 1.Datasets LoRAs/        # Datasets por categoría
 │   ├── 2.Entrenamientos/        # Configuraciones y checkpoints
-│   ├── 3.Modelos Base seleccionados/  # Modelos base y LoRAs entrenados
-│   ├── 4.Inferencias LoRAs seleccionados/  # Resultados de inferencia
+│   ├── 3.Inferencias LoRAs seleccionados/  # Resultados de inferencia
 │   └── README.md
 │
-├── 4.API_User_Interface/        # API y interfaz web
+├── 4.Modelos_seleccionados/     # Modelos base y LoRAs entrenados
+│
+├── 5.API_User_Interface/        # API y interfaz web
 │   ├── main.py                  # API FastAPI
 │   ├── comfy_client.py          # Cliente ComfyUI
 │   ├── generador_api.py         # Generador de workflows
@@ -80,8 +101,9 @@ TFM_Outfit_AI_Generator_Fortnite/
 ├── Guias KOHYA Trainings/       # Documentación de entrenamiento
 │
 ├── requirements.txt             # Dependencias Python
-├── SETUP.md                     # Instrucciones de configuración
+├── SETUP_venv.md                # Instrucciones de configuración
 ├── MODELS_DOWNLOAD.md           # Instrucciones de descarga de modelos
+├── VAST_AI_SETUP.md             # Guía técnica: Vast.ai, KOHYA y ComfyUI
 └── README.md                    # Este archivo
 ```
 
@@ -89,18 +111,26 @@ TFM_Outfit_AI_Generator_Fortnite/
 
 ### Prerrequisitos
 
+**Para desarrollo local:**
+
 -   Python 3.11
 -   Git
 -   Git LFS (para archivos grandes)
 -   ComfyUI instalado y configurado
 -   GPU con al menos 8GB VRAM (recomendado 12GB+)
 
+**Para entrenamiento e inferencia en la nube:**
+
+-   Cuenta en [Vast.ai](https://vast.ai)
+-   Acceso SSH configurado
+-   Consulta **[VAST_AI_SETUP.md](VAST_AI_SETUP.md)** para guía completa de despliegue en la nube
+
 ### Instalación
 
 1. **Clonar el repositorio:**
 
 ```bash
-git clone https://github.com/USERNAME/TFM_Outfit_AI_Generator_Fortnite.git
+git clone https://github.com/SValduezaL/TFM_Outfit_AI_Generator_Fortnite.git
 cd TFM_Outfit_AI_Generator_Fortnite
 ```
 
@@ -185,11 +215,29 @@ La interfaz web estará disponible en `http://localhost:8000/static/skingen.html
 
 Cada módulo del proyecto tiene su propia documentación:
 
+### Documentación Principal
+
+-   **[VAST_AI_SETUP.md](VAST_AI_SETUP.md)** - ⭐ **Guía técnica completa** para entrenamiento e inferencia con Vast.ai, KOHYA y ComfyUI
+    -   Alquiler y configuración de GPUs en Vast.ai
+    -   Uso de templates preconfigurados (Kohya's GUI y ComfyUI)
+    -   Entrenamiento de fine-tuning y LoRAs con A100 40GB/80GB
+    -   Despliegue de ComfyUI con RTX 4060/4090
+    -   Integración con API REST
+
+### Documentación por Módulo
+
 -   **[1.Data_prep/README.md](1.Data_prep/README.md)** - Pipeline de preparación de datos
+-   **[2.Finetuning_Humanoids/README.md](2.Finetuning_Humanoids/README.md)** - Fine-tuning del modelo base
 -   **[3.LoRAs/README.md](3.LoRAs/README.md)** - Entrenamiento de LoRAs especializados
 -   **[5.API_User_Interface/README.md](5.API_User_Interface/README.md)** - API y interfaz de usuario
 -   **[MODELS_DOWNLOAD.md](MODELS_DOWNLOAD.md)** - Instrucciones de descarga de modelos
--   **[SETUP.md](SETUP_venv.md)** - Configuración del entorno
+-   **[SETUP_venv.md](SETUP_venv.md)** - Configuración del entorno local
+
+### Presentación del Proyecto
+
+-   **[0.Presentacion/](0.Presentacion/)** - Presentación del TFM
+    -   `TFM_Generacion_Personajes_Fortnite_vF.pdf` - Presentación en PDF
+    -   `TFM_Generacion_Personajes_Fortnite_vF.pptx` - Presentación en PowerPoint
 
 ## 🎯 Características Principales
 
@@ -279,7 +327,14 @@ Todos los LoRAs están incluidos en el repositorio mediante Git LFS.
 
 ## 📝 Licencia
 
-Este proyecto es parte de un Trabajo de Fin de Máster (TFM) para el Máster de Deep Learning en MIOTI Tech & Business School. Consulta la licencia en el repositorio.
+Este proyecto es parte de un Trabajo de Fin de Máster (TFM) para el Máster de Deep Learning en **MIOTI Tech & Business School**.
+
+**Reconocimientos:**
+
+-   🥇 Mejor TFM del Máster Deep Learning - Promoción 2025
+-   🏆 Mejor Proyecto Académico de toda la Escuela - Año académico 2024-2025
+
+Consulta la licencia en el repositorio.
 
 ## 👤 Autores
 
