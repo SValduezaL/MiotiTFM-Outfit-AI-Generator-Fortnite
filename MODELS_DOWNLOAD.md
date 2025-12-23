@@ -8,7 +8,7 @@ Este documento contiene las instrucciones para descargar los modelos base grande
 
 **Archivo:** `sd_xl_base_1.0.safetensors` (~7GB)
 
-**Ubicación en el proyecto:** `3.LoRAs/3.Modelos Base seleccionados/sd_xl_base_1.0.safetensors`
+**Ubicación en el proyecto:** `4.Modelos_seleccionados/sd_xl_base_1.0.safetensors`
 
 **Descarga:**
 
@@ -24,7 +24,7 @@ Este documento contiene las instrucciones para descargar los modelos base grande
 
 **Archivo:** `sd_xl_refiner_1.0.safetensors` (~6GB)
 
-**Ubicación en el proyecto:** `3.LoRAs/3.Modelos Base seleccionados/sd_xl_refiner_1.0.safetensors`
+**Ubicación en el proyecto:** `4.Modelos_seleccionados/sd_xl_refiner_1.0.safetensors`
 
 **Descarga:**
 
@@ -40,7 +40,7 @@ Este documento contiene las instrucciones para descargar los modelos base grande
 
 **Archivo:** `gufengAnimeXL_v10.safetensors` (~7GB)
 
-**Ubicación en el proyecto:** `3.LoRAs/3.Modelos Base seleccionados/gufengAnimeXL_v10.safetensors`
+**Ubicación en el proyecto:** `4.Modelos_seleccionados/gufengAnimeXL_v10.safetensors`
 
 **Descarga:**
 
@@ -51,9 +51,9 @@ Este documento contiene las instrucciones para descargar los modelos base grande
 
 ### 4. Modelo Fine-tuned Fortnite Humanoid
 
-**Carpeta:** `v1x0_fortnite_humanoid_sdxl1_vae_fix-000005/` (~7GB)
+**Carpeta:** `humanoid_05/` (~7GB)
 
-**Ubicación en el proyecto:** `3.LoRAs/3.Modelos Base seleccionados/v1x0_fortnite_humanoid_sdxl1_vae_fix-000005/`
+**Ubicación en el proyecto:** `4.Modelos_seleccionados/humanoid_05/`
 
 **Descarga:**
 
@@ -65,7 +65,7 @@ Este documento contiene las instrucciones para descargar los modelos base grande
 **Estructura esperada:**
 
 ```
-v1x0_fortnite_humanoid_sdxl1_vae_fix-000005/
+humanoid_05/
 ├── model_index.json
 ├── scheduler/
 │   └── scheduler_config.json
@@ -109,10 +109,10 @@ v1x0_fortnite_humanoid_sdxl1_vae_fix-000005/
 pip install huggingface-hub
 
 # Descargar SDXL Base
-huggingface-cli download stabilityai/stable-diffusion-xl-base-1.0 sd_xl_base_1.0.safetensors --local-dir 3.LoRAs/3.Modelos\ Base\ seleccionados/
+huggingface-cli download stabilityai/stable-diffusion-xl-base-1.0 sd_xl_base_1.0.safetensors --local-dir 4.Modelos_seleccionados/
 
 # Descargar SDXL Refiner
-huggingface-cli download stabilityai/stable-diffusion-xl-refiner-1.0 sd_xl_refiner_1.0.safetensors --local-dir 3.LoRAs/3.Modelos\ Base\ seleccionados/
+huggingface-cli download stabilityai/stable-diffusion-xl-refiner-1.0 sd_xl_refiner_1.0.safetensors --local-dir 4.Modelos_seleccionados/
 ```
 
 ### Método 3: Usando Python
@@ -122,7 +122,7 @@ from huggingface_hub import hf_hub_download
 import os
 
 # Directorio de destino
-model_dir = "3.LoRAs/3.Modelos Base seleccionados"
+model_dir = "4.Modelos_seleccionados"
 
 # Descargar SDXL Base
 hf_hub_download(
@@ -151,7 +151,7 @@ Después de descargar los modelos, verifica que:
 
 -   **Espacio en disco:** Asegúrate de tener al menos 30GB de espacio libre para todos los modelos
 -   **Tiempo de descarga:** Dependiendo de tu conexión, la descarga puede tardar varias horas
--   **Modelo Fine-tuned:** El modelo `v1x0_fortnite_humanoid_sdxl1_vae_fix-000005` es específico de este proyecto y puede no estar disponible públicamente. Contacta al autor si necesitas acceso.
+-   **Modelo Fine-tuned:** El modelo `humanoid_05` es específico de este proyecto y puede no estar disponible públicamente. Contacta al autor si necesitas acceso.
 
 ## 🔗 Enlaces Útiles
 

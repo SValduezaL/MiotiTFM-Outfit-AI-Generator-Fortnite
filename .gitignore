@@ -52,15 +52,11 @@ desktop.ini
 1.Data_preparation/outfits_originales_1024_rgba/
 1.Data_preparation/outfits_procesados_1024_rgb/
 
-# Excluir carpetas con nombres muy largos (problemas en Windows)
-# 3.LoRAs/2.Entrenamientos/FT_Humanoid_5e_vF_LoRA_Animal_v1*/
-
 # Modelos base grandes (deben descargarse manualmente)
 # Ver MODELS_DOWNLOAD.md para instrucciones
-3.LoRAs/3.Modelos Base seleccionados/sd_xl_base_1.0.safetensors
-3.LoRAs/3.Modelos Base seleccionados/sd_xl_refiner_1.0.safetensors
-3.LoRAs/3.Modelos Base seleccionados/gufengAnimeXL_v10.safetensors
-3.LoRAs/3.Modelos Base seleccionados/v1x0_fortnite_humanoid_sdxl1_vae_fix-000005/
+4.Modelos_seleccionados/sd_xl_base_1.0.safetensors
+4.Modelos_seleccionados/sd_xl_refiner_1.0.safetensors
+4.Modelos_seleccionados/humanoid_05/
 
 # Checkpoints y archivos temporales de entrenamiento
 *.ckpt

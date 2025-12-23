@@ -148,7 +148,7 @@ Consulta [MODELS_DOWNLOAD.md](MODELS_DOWNLOAD.md) para instrucciones detalladas 
 
 -   `sd_xl_base_1.0.safetensors` (~7GB)
 -   `sd_xl_refiner_1.0.safetensors` (~6GB)
--   `v1x0_fortnite_humanoid_sdxl1_vae_fix-000005/` (~7GB) - Modelo fine-tuned
+-   `humanoid_05/` (~7GB) - Modelo fine-tuned
 
 6. **Configurar variables de entorno:**
 
@@ -185,11 +185,11 @@ La interfaz web estará disponible en `http://localhost:8000/static/skingen.html
 
 Cada módulo del proyecto tiene su propia documentación:
 
--   **[1.Data_preparation/README.md](1.Data_preparation/README.md)** - Pipeline de preparación de datos
+-   **[1.Data_prep/README.md](1.Data_prep/README.md)** - Pipeline de preparación de datos
 -   **[3.LoRAs/README.md](3.LoRAs/README.md)** - Entrenamiento de LoRAs especializados
--   **[4.API_User_Interface/README.md](4.API_User_Interface/README.md)** - API y interfaz de usuario
+-   **[5.API_User_Interface/README.md](5.API_User_Interface/README.md)** - API y interfaz de usuario
 -   **[MODELS_DOWNLOAD.md](MODELS_DOWNLOAD.md)** - Instrucciones de descarga de modelos
--   **[SETUP.md](SETUP.md)** - Configuración del entorno
+-   **[SETUP.md](SETUP_venv.md)** - Configuración del entorno
 
 ## 🎯 Características Principales
 
@@ -214,7 +214,16 @@ Cada módulo del proyecto tiene su propia documentación:
 -   Traducción automática de prompts
 -   Procesamiento asíncrono con seguimiento de progreso
 
-### 4. Interfaz Web
+### 4. Modelos Seleccionados
+
+-   Modelo Base Stable Diffusion XL Base 1.0 [a descargar según MODELS_DOWNLOAD.md]
+-   Modelo Stable Diffusion XL Refiner 1.0 [a descargar según MODELS_DOWNLOAD.md]
+-   [Opcional] Modelo Gufeng Anime XL v10 [a descargar según MODELS_DOWNLOAD.md]
+-   Modelo Fine-tuned Fortnite Humanoid seleccionado [a descargar según MODELS_DOWNLOAD.md]
+-   Modelos LoRA seleccionados para cada categoría temática
+-   Modelo Nice Hands para refinar esa parte del cuerpo de los LoRA
+
+### 5. Interfaz Web
 
 -   Interfaz HTML interactiva
 -   Visualización en tiempo real del progreso
@@ -233,11 +242,11 @@ Cada módulo del proyecto tiene su propia documentación:
 -   **Pandas** - Manipulación de datos
 -   **Jupyter Notebooks** - Análisis y experimentación
 
-## 📊 Modelos y LoRAs
+## 📊 Modelos y LoRAs entrenados en este TFM
 
 ### Modelo Base Fine-tuned
 
--   **v1x0_fortnite_humanoid_sdxl1_vae_fix-000005**: Modelo fine-tuned sobre SDXL base con datos de Fortnite
+-   **humanoid_05**: Modelo fine-tuned sobre SDXL base con datos de Fortnite
 
 ### LoRAs Entrenados
 
